@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @author : Chet
- * @description : 关闭订单的实体类
+ * @description : 查询订单的实体类
  * @date : 2019/10/29
  */
 @Data

@@ -10,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import cn.yccoding.wpp.config.WCPConfigParams;
 import cn.yccoding.wpp.config.WCPConfigParamsYML;
-import cn.yccoding.wpp.sdk.WXPayConfigExt;
-import cn.yccoding.wpp.sdk.WXPayConfigYMLExt;
+import cn.yccoding.wpp.sdk.WXPayConfigImpl;
+import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,10 +27,10 @@ class WppApplicationTests {
     private WCPConfigParamsYML wcpConfigParamsYML;
 
     @Autowired
-    private WXPayConfigExt wxPayConfigExt;
+    private WXPayConfigImpl wxPayConfigImpl;
 
     @Autowired
-    private WXPayConfigYMLExt wxPayConfigYMLExt;
+    private WXPayConfigYMLImpl wxPayConfigYMLImpl;
 
     @Autowired
     private WCPBackendUtil wcpBackendUtil;
@@ -38,8 +38,8 @@ class WppApplicationTests {
     @Test
     void contextLoads() {
         System.out.println(wcpConfigParams);
-        System.out.println(wxPayConfigExt.getAppID());
-        System.out.println(wxPayConfigYMLExt.getAppID());
+        System.out.println(wxPayConfigImpl.getAppID());
+        System.out.println(wxPayConfigYMLImpl.getAppID());
     }
 
     @Test

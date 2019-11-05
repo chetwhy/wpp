@@ -1,8 +1,8 @@
 package cn.yccoding.wpp.config;
 
 import cn.yccoding.wpp.sdk.WXPay;
-import cn.yccoding.wpp.sdk.WXPayConfigExt;
-import cn.yccoding.wpp.sdk.WXPayConfigYMLExt;
+import cn.yccoding.wpp.sdk.WXPayConfigImpl;
+import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,23 +44,23 @@ public class WCPConfig {
 
     @Bean
     @DependsOn(value = "wcpConfigParams")
-    public WXPayConfigExt wxPayConfigExt() {
-        WXPayConfigExt wxPayConfigExt = new WXPayConfigExt();
-        wxPayConfigExt.setWcpConfigParams(wcpConfigParams());
-        return wxPayConfigExt;
+    public WXPayConfigImpl wxPayConfigImpl() {
+        WXPayConfigImpl wxPayConfigImpl = new WXPayConfigImpl();
+        wxPayConfigImpl.setWcpConfigParams(wcpConfigParams());
+        return wxPayConfigImpl;
     }
 
     @Bean
-    public WXPayConfigYMLExt wxPayConfigYMLExt() {
-        WXPayConfigYMLExt wxPayConfigYMLExt = new WXPayConfigYMLExt();
-        wxPayConfigYMLExt.setWcpConfigParamsYML(wcpConfigParamsYML);
-        return wxPayConfigYMLExt;
+    public WXPayConfigYMLImpl wxPayConfigYMLExt() {
+        WXPayConfigYMLImpl wxPayConfigYMLImpl = new WXPayConfigYMLImpl();
+        wxPayConfigYMLImpl.setWcpConfigParamsYML(wcpConfigParamsYML);
+        return wxPayConfigYMLImpl;
     }
 
     @Bean(name = "wxPayDefault")
-    @DependsOn(value = "wxPayConfigYMLExt")
+    @DependsOn(value = "wxPayConfigImpl")
     public WXPay wxPayDefault() throws Exception {
-        WXPay wxPay = new WXPay(wxPayConfigExt());
+        WXPay wxPay = new WXPay(wxPayConfigImpl());
         return wxPay;
     }
 }

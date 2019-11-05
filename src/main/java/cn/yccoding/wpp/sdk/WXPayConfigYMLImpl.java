@@ -9,14 +9,14 @@ import cn.yccoding.wpp.config.WCPConfigParamsYML;
  * @description : WXPayConfig继承类
  * @date : 2019/11/1
  */
-public class WXPayConfigYMLExt implements WXPayConfig {
+public class WXPayConfigYMLImpl implements WXPayConfig {
 
     private WCPConfigParamsYML wcpConfigParamsYML;
 
     private byte[] certData;
 
     // 需要证书，yml注入
-    public WXPayConfigYMLExt(WCPConfigParamsYML wcpConfigParamsYML) throws IOException {
+    public WXPayConfigYMLImpl(WCPConfigParamsYML wcpConfigParamsYML) throws IOException {
         this.wcpConfigParamsYML = wcpConfigParamsYML;
         String certPath = wcpConfigParamsYML.getApiclientCert();
         File file = new File(certPath);
@@ -26,7 +26,7 @@ public class WXPayConfigYMLExt implements WXPayConfig {
         certStream.close();
     }
 
-    public WXPayConfigYMLExt() {}
+    public WXPayConfigYMLImpl() {}
 
     public void setCertData(byte[] certData) {
         this.certData = certData;

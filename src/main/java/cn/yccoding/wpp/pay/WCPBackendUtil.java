@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 
 import cn.yccoding.wpp.config.WCPConfigParams;
 import cn.yccoding.wpp.sdk.WXPay;
-import cn.yccoding.wpp.sdk.WXPayConfigExt;
+import cn.yccoding.wpp.sdk.WXPayConfigImpl;
 import cn.yccoding.wpp.sdk.WXPayConstants;
 import cn.yccoding.wpp.sdk.WXPayUtil;
 
@@ -26,9 +26,6 @@ import cn.yccoding.wpp.sdk.WXPayUtil;
  */
 @Component
 public class WCPBackendUtil {
-
-    @Autowired
-    private WXPayConfigExt wxPayConfigExt;
 
     @Autowired
     @Qualifier("wxPayDefault")
@@ -43,6 +40,16 @@ public class WCPBackendUtil {
     @Autowired
     private WPPBackendUtil wppBackendUtil;
 
+    /**
+     * 统一下单接口，输入指定参数，只关心必要参数
+     * @param openid        用户在公众号的唯一识别号
+     * @param tradeType     交易类型
+     * @param price         价格
+     * @param productDesc   商品描述
+     * @param terminalIP    终端ip
+     * @param requestUrl    请求来源的url
+     * @return  返回js校验参数的的map
+     */
     public Map<String, Object> unifiedorder(String openid, String tradeType, String price, String productDesc,
         String terminalIP, String requestUrl) {
         try {
@@ -79,6 +86,12 @@ public class WCPBackendUtil {
         return null;
     }
 
+    /**
+     * 通用微信支付的调用方法，参数灵活
+     * @param requestEntity UnifiedOrderRequestEntity统一下单的实体类
+     * @param requestUrl    请求来源的url
+     * @return
+     */
     public Map<String, Object> unifiedorder(UnifiedOrderRequestEntity requestEntity, String requestUrl) {
         try {
             String nonceStr = requestEntity.getNonceStr();
@@ -98,9 +111,8 @@ public class WCPBackendUtil {
                 return map;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // 返回包含错误提示的map
         }
-
         return null;
     }
 
