@@ -1,0 +1,25 @@
+wechat:
+  wcp:
+    APP_ID:
+    APPSECRET:
+    MCH_ID:
+    API_KEY:
+    # 注册域名
+    REGISTER_DOMAIN: chety.mynatapp.cc
+    # 支付授权目录
+    JSAPI_PAYMENT_AUTH_DIR: chety.mynatapp.cc
+    # JS 安全域名
+    JS_DOMAIN: chety.mynatapp.cc
+    # 网页授权域名
+    WEB_AUTH_DOMAIN: chety.mynatapp.cc
+    # 证书路径
+    APICLIENT_CERT:
+    # 异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数
+    NOTIFY_URL: https://chety.mynatapp.cc/api/v1/wechat1/wxnotify
+    # 异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数，如果参数中传了notify_url，则商户平台上配置的回调地址将不会生效。
+    NOTIFY_URL_REFUND:
+
+spring:
+  redis:
+    host: 120.79.27.209
+    port: 6379
