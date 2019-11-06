@@ -23,4 +23,4 @@ wechat:
 spring:
   redis:
     host:
-    port:
+    port: 
