@@ -19,7 +19,7 @@ import java.util.Date;
 public class WPPBackendUtil {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplateSingle;
 
     @Autowired
     private WCPConfigParams wcpConfigParams;
@@ -31,7 +31,7 @@ public class WPPBackendUtil {
     public String getAccessToken() {
         //当accessToken为null或者失效才重新去获取
         if(accessToken==null||new Date().getTime()>expiresTime) {
-            JSONObject obj = restTemplate.getForObject(MessageFormat.format(WPPURL.BASE_ACCESS_TOKEN, wcpConfigParams.getAppId(), wcpConfigParams.getAppSecret()), JSONObject.class);
+            JSONObject obj = restTemplateSingle.getForObject(MessageFormat.format(WPPURL.BASE_ACCESS_TOKEN, wcpConfigParams.getAppId(), wcpConfigParams.getAppSecret()), JSONObject.class);
             //凭据
             accessToken = obj.getString("access_token");
             //有效期
@@ -48,7 +48,7 @@ public class WPPBackendUtil {
      */
     public String getJsApiTicket(String accessToken){
         //发起请求到指定的接口
-        String obj = restTemplate.getForObject(WPPURL.BASE_JSAPI_TICKET, String.class, accessToken);
+        String obj = restTemplateSingle.getForObject(WPPURL.BASE_JSAPI_TICKET, String.class, accessToken);
         JSONObject jsonObj = JSON.parseObject(obj);
         String ticket = jsonObj.getString("ticket");
         return ticket;

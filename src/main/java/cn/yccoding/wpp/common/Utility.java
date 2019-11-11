@@ -73,4 +73,7 @@ public class Utility {
     public static Double Fen2Yuan(Integer fen) {
         return new BigDecimal(fen).movePointLeft(2).doubleValue();
     }
+
+    public static void main(String[] args) {
+    }
 }

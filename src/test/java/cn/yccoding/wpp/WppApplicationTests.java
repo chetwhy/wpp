@@ -1,21 +1,21 @@
 package cn.yccoding.wpp;
 
-import cn.yccoding.wpp.model.wcp.*;
-import cn.yccoding.wpp.pay.WCPBackendConst;
-import cn.yccoding.wpp.pay.WCPBackendUtil;
-import cn.yccoding.wpp.sdk.WXPayUtil;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import cn.yccoding.wpp.config.WCPConfigParams;
 import cn.yccoding.wpp.config.WCPConfigParamsYML;
+import cn.yccoding.wpp.model.wcp.*;
+import cn.yccoding.wpp.pay.WCPBackendConst;
+import cn.yccoding.wpp.pay.WCPBackendUtil;
 import cn.yccoding.wpp.sdk.WXPayConfigImpl;
 import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import cn.yccoding.wpp.sdk.WXPayUtil;
 
 @SpringBootTest
 class WppApplicationTests {
@@ -47,7 +47,8 @@ class WppApplicationTests {
         String openid = "o4036jqo2PN9isV6N2FHGRsGRVqg";
         String ipAddr = "127.0.0.1";
         String url = "http://chety.mynatapp.cc";
-        Map<String, Object> result1 = wcpBackendUtil.unifiedorder(openid, WCPBackendConst.TradeType.JSAPI.toString(), "1", "Test", ipAddr, url);
+        Map<String, Object> result1 =
+            wcpBackendUtil.unifiedorder(openid, WCPBackendConst.TradeType.JSAPI.toString(), "1", "Test", ipAddr, url);
         UnifiedOrderRequestEntity requestEntity = new UnifiedOrderRequestEntity();
         requestEntity.setOutTradeNo(wcpBackendUtil.generateRandomOrderNo());
         requestEntity.setBody("Test");
@@ -58,7 +59,7 @@ class WppApplicationTests {
         requestEntity.setNotifyUrl("1");
         requestEntity.setNonceStr(WXPayUtil.generateNonceStr());
         requestEntity.setNotifyUrl(wcpConfigParams.getNotifyUrl());
-        Map<String, Object> result2 = wcpBackendUtil.unifiedorder(requestEntity,url);
+        Map<String, Object> result2 = wcpBackendUtil.unifiedorder(requestEntity, url);
         System.out.println(result1);
         System.out.println(result2);
     }
@@ -87,7 +88,7 @@ class WppApplicationTests {
 
     @Test
     void testRefund() {
-        Map<String, String> result1 = wcpBackendUtil.refund("201907051128063699",generateRandomOrderNo(),"1","1");
+        Map<String, String> result1 = wcpBackendUtil.refund("201907051128063699", generateRandomOrderNo(), "1", "1");
         RefundRequestEntity requestEntity = new RefundRequestEntity();
         requestEntity.setOutTradeNo("201907051128063699");
         requestEntity.setRefundFee("1");
@@ -112,7 +113,7 @@ class WppApplicationTests {
 
     @Test
     void testDLBill() {
-        Map<String, String> result1 = wcpBackendUtil.downloadbill("20190705","ALL");
+        Map<String, String> result1 = wcpBackendUtil.downloadbill("20190705", "ALL");
         DownloadBillRequestEntity requestEntity = new DownloadBillRequestEntity();
         requestEntity.setBillDate("20190705");
         requestEntity.setBillType(WCPBackendConst.BillType.ALL.toString());
@@ -124,7 +125,7 @@ class WppApplicationTests {
 
     @Test
     void testDLFundFlow() {
-        Map<String, String> result1 = wcpBackendUtil.downloadfundflow("20190705","Basic");
+        Map<String, String> result1 = wcpBackendUtil.downloadfundflow("20190705", "Basic");
         DownloadFundFlowRequestEntity requestEntity = new DownloadFundFlowRequestEntity();
         requestEntity.setBillDate("20190705");
         requestEntity.setAccountType(WCPBackendConst.AccountType.Basic.toString());
@@ -136,7 +137,7 @@ class WppApplicationTests {
 
     @Test
     void testBatchQueryComment() {
-        Map<String, String> result1 = wcpBackendUtil.batchquerycomment("20190705000000","20190706000000","0");
+        Map<String, String> result1 = wcpBackendUtil.batchquerycomment("20190705000000", "20190706000000", "0");
         BatchQueryCommentRequestEntity requestEntity = new BatchQueryCommentRequestEntity();
         requestEntity.setBeginTime("20190705000000");
         requestEntity.setEndTime("20190706000000");
