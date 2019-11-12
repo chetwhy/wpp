@@ -21,31 +21,31 @@ wechat:
 
 spring:
   application:
-    name: member-server
+    name: chet-redis-server
   redis:
     database: 0
     #单机版
-    #    host: 127.0.0.1
-    #    port: 6379
-    #    password: 123456
-    #      pool:
-    #        max-idle: 100
-    #        min-idle: 1
-    #        max-active: 1000
-    #        max-wait: -1
+        host: 120.79.27.209
+        port: 6379
+        password:
+          pool:
+            max-idle: 100
+            min-idle: 1
+            max-active: 1000
+            max-wait: -1
     #集群版
-    lettuce:
-      pool:
-        max-active: 8
-        max-wait: -1
-        max-idle: 8
-        min-idle: 0
-    timeout: 10000
-    cluster:
-      nodes:
-        - 120.79.27.209:7000
-        - 120.79.27.209:7001
-        - 120.79.27.209:7002
-        - 120.79.27.209:7003
-        - 120.79.27.209:7004
-        - 120.79.27.209:7005
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 8
+#        min-idle: 0
+#    timeout: 10000
+#    cluster:
+#      nodes:
+#        - 120.79.27.209:7000
+#        - 120.79.27.209:7001
+#        - 120.79.27.209:7002
+#        - 120.79.27.209:7003
+#        - 120.79.27.209:7004
+#        - 120.79.27.209:7005
