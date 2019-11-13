@@ -20,19 +20,15 @@ wechat:
     NOTIFY_URL_REFUND:
 
 spring:
-  application:
-    name: chet-redis-server
   redis:
+    #redis数据库，默认是0
     database: 0
-    #单机版
-        host: 120.79.27.209
-        port: 6379
-        password:
-          pool:
-            max-idle: 100
-            min-idle: 1
-            max-active: 1000
-            max-wait: -1
+    #redis服务器地址
+    host: 120.79.27.209
+    #redis服务端口，默认6379
+    port: 6379
+    #redis密码，默认为空
+    password:
     #集群版
 #    lettuce:
 #      pool:

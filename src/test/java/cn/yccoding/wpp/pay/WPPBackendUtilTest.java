@@ -20,7 +20,7 @@ class WPPBackendUtilTest {
     void testRedis() {
         // redisTemplate.boundValueOps("k1").set("K1");
         // execute().set("k2".getBytes(), "v2".getBytes());
-        String accessToken = wppBackendUtil.getAccessToken();
+        String accessToken = wppBackendUtil.getAccessTokenInRedis("k5");
         System.out.println("accessToken=" + accessToken);
         String key = "wpp:" + accessToken;
         if (execute().get(key.getBytes()) != null) {
