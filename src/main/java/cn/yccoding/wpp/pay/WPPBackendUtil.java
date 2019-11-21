@@ -51,7 +51,7 @@ public class WPPBackendUtil {
         Long expiresIn = obj.getLong("expires_in"); //有效期，单位秒
         if (StringUtils.isNotBlank(token)) {
             redisService.set(key, token, (expiresIn-5*60L)*1000); // 提前五分钟过期
-            return code;
+            return token;
         }
         return null;
     }

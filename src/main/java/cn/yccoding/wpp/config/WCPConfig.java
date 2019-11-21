@@ -16,7 +16,7 @@ import org.springframework.core.env.Environment;
  * @date : 2019/11/1
  */
 @Configuration
-@PropertySource("classpath:config/wechat-pay-ups-chet.properties")
+@PropertySource("classpath:config/wechat-pay-ups-test.properties")
 public class WCPConfig {
 
     @Autowired

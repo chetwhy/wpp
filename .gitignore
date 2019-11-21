@@ -69,3 +69,5 @@ Servers
 *-chet.yml
 *-ups-test.properties
 *-ups-chet.properties
+*.properties
+*.yml

@@ -22,14 +22,6 @@ class WPPBackendUtilTest {
         // execute().set("k2".getBytes(), "v2".getBytes());
         String accessToken = wppBackendUtil.getAccessTokenInRedis("k5");
         System.out.println("accessToken=" + accessToken);
-        String key = "wpp:" + accessToken;
-        if (execute().get(key.getBytes()) != null) {
-            System.out.println("已存在");
-            System.out.println(key.getBytes());
-        } else {
-            System.out.println("不存在，新储存");
-            execute().set(key.getBytes(), accessToken.getBytes());
-        }
     }
 
     @Test
