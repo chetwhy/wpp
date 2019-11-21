@@ -1,7 +1,7 @@
 ## 测试公众号
 wechat:
   wcp:
-    APP_ID: 
+    APP_ID:
     APPSECRET:
     MCH_ID:
     API_KEY:
