@@ -1,9 +1,11 @@
 package cn.yccoding.wpp.service.impl;
 
+import cn.yccoding.wpp.common.HttpClientUtil;
 import cn.yccoding.wpp.config.WPPConfigParams;
 import cn.yccoding.wpp.pay.WPPBackendUtil;
 import cn.yccoding.wpp.pay.WPPURL;
 import cn.yccoding.wpp.service.ICustomMenuService;
+import org.apache.http.client.utils.HttpClientUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
@@ -27,30 +29,32 @@ public class CustomMenuServiceImpl implements ICustomMenuService {
     @Autowired
     private WPPBackendUtil wppBackendUtil;
 
+    @Autowired
+    private HttpClientUtil httpClientUtil;
+
     @Override
     public String createMenu(String menuJson) {
-        String token = wppBackendUtil.getAccessTokenInRedis("menu");
-
+        String token = wppBackendUtil.getAccessTokenInRedis(wppConfigParams.getAppId());
         String toUrl = MessageFormat.format(WPPURL.MENU_CREATE, token);
         HttpEntity<String> httpEntity = new HttpEntity<>(menuJson);
-        restTemplate.postForObject(toUrl, httpEntity, String.class, )
-        String result =
-            HttpUtil.post(WxGZHConstants.CREATE_MENU_URL.replace("ACCESS_TOKEN", wxConfigUtil.getAccessToken()), menuJson);
-        wxConfigUtil.getLogger().info("创建自定义菜单结果：{}", result);
+        String result = restTemplate.postForObject(toUrl, httpEntity, String.class);
+        System.out.println(result);
         return result;
     }
 
     @Override
     public String getMenu() {
-        String result = HttpUtil.get(WxGZHConstants.GET_MENU_URL.replace("ACCESS_TOKEN", wxConfigUtil.getAccessToken()));
-        wxConfigUtil.getLogger().info("查询菜单结果：{}", result);
+        String token = wppBackendUtil.getAccessTokenInRedis(wppConfigParams.getAppId());
+        String toUrl = MessageFormat.format(WPPURL.MENU_QUERY, token);
+        String result = httpClientUtil.doGet(toUrl);
         return result;
     }
 
     @Override
     public String deleteMenu() {
-        String result = HttpUtil.get(WxGZHConstants.DELETE_MENU_URL.replace("ACCESS_TOKEN", wxConfigUtil.getAccessToken()));
-        wxConfigUtil.getLogger().info("删除菜单结果：{}", result);
+        String token = wppBackendUtil.getAccessTokenInRedis(wppConfigParams.getAppId());
+        String toUrl = MessageFormat.format(WPPURL.MENU_DELETE, token);
+        String result = httpClientUtil.doGet(toUrl);
         return result;
     }
 }

@@ -72,7 +72,7 @@ public class WCPBackendUtil {
                 && respMap.get("result_code").equals((WXPayConstants.SUCCESS))) {
                 String prepayId = respMap.get("prepay_id");
                 return wppSignatureUtil.permissionValidate(wcpConfigParams.getAppId(), nonceStr, requestUrl, prepayId,
-                    wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(openid)));
+                    wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(wcpConfigParams.getAppId())));
             } else if (!respMap.get("return_code").equals(WXPayConstants.SUCCESS)) {
                 Map<String, Object> map = new HashMap<>();
                 for (String key : respMap.keySet()) {
@@ -102,7 +102,7 @@ public class WCPBackendUtil {
                 && respMap.get("result_code").equals((WXPayConstants.SUCCESS))) {
                 String prepayId = respMap.get("prepay_id");
                 return wppSignatureUtil.permissionValidate(wcpConfigParams.getAppId(), nonceStr, requestUrl, prepayId,
-                        wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(requestEntity.getOpenid())));
+                        wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(wcpConfigParams.getAppId())));
             } else if (!respMap.get("return_code").equals(WXPayConstants.SUCCESS)) {
                 Map<String, Object> map = new HashMap<>();
                 for (String key : respMap.keySet()) {
