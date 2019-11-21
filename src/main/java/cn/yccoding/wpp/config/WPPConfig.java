@@ -19,12 +19,13 @@ public class WPPConfig {
     private Environment env;
 
     @Bean
-    public WPPConfigParams wcpConfigParams() {
+    public WPPConfigParams wppConfigParams() {
         WPPConfigParams params = new WPPConfigParams();
-        params.setAppId(env.getProperty("wcp.APP_ID"));
-        params.setAppSecret(env.getProperty("wcp.APPSECRET"));
-        params.setRegisterDomain(env.getProperty("wcp.REGISTER_DOMAIN"));
-        params.setWebAuthDomain(env.getProperty("wcp.webAuthDomain"));
+        params.setAppId(env.getProperty("wpp.APP_ID"));
+        params.setAppSecret(env.getProperty("wpp.APPSECRET"));
+        params.setInterfaceUrl(env.getProperty("wpp.INTERFACE_TOKEN"));
+        params.setJsDomain(env.getProperty("wpp.JS_DOMAIN"));
+        params.setWebAuthDomain(env.getProperty("wpp.WEB_AUTH_DOMAIN"));
         return params;
     }
 }
