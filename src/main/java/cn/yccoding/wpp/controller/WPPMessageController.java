@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalField;
@@ -55,14 +56,14 @@ public class WPPMessageController {
         TextMessageResp respMsg = new TextMessageResp();
         respMsg.setFromUserName(reqMsg.getToUserName());
         respMsg.setToUserName(reqMsg.getFromUserName());
-        respMsg.setCreateTime(LocalDateTime.now().getLong(ChronoField.NANO_OF_SECOND));
+        respMsg.setCreateTime(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
         respMsg.setMsgType("text");
         respMsg.setContent(reqMsg.getContent());
         return respMsg;
     }
 
     public static void main(String[] args) {
-        System.out.println(LocalDateTime.now().getLong(ChronoField.NANO_OF_SECOND));
+        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
         //System.out.println(LocalDateTime.now().getLong(ChronoField.INSTANT_SECONDS));
         System.out.println(new Date().getTime());
     }
