@@ -149,7 +149,7 @@ class WppApplicationTests {
 
     private String generateRandomOrderNo() {
         int number = (int)((Math.random() * 9) * 1000);// 随机数
-        String nowStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        String nowStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmSSss"));
         return nowStr + number;
     }
 

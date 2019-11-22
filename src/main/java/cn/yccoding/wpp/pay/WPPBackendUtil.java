@@ -1,6 +1,7 @@
 package cn.yccoding.wpp.pay;
 
 import cn.yccoding.wpp.config.WCPConfigParams;
+import cn.yccoding.wpp.config.WPPConfigParams;
 import cn.yccoding.wpp.service.IRedisService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -27,6 +29,9 @@ public class WPPBackendUtil {
 
     @Autowired
     private WCPConfigParams wcpConfigParams;
+
+    @Autowired
+    private WPPConfigParams wppConfigParams;
 
     public static String accessToken;
     public static long expiresTime;
@@ -81,6 +86,25 @@ public class WPPBackendUtil {
         JSONObject jsonObj = JSON.parseObject(obj);
         String ticket = jsonObj.getString("ticket");
         return ticket;
+    }
+
+    /**
+     * 微信接入时签名校验
+     * @param signature
+     * @param timestamp
+     * @param nonce
+     * @return
+     */
+    public boolean checkSignature(String signature,String timestamp,String nonce){
+        // 1 将token、timestamp、nonce三个参数进行字典序排序
+        String[] arr = {wppConfigParams.getInterfaceToken(), timestamp, nonce};
+        Arrays.sort(arr);
+        // 2 将三个参数字符串拼接成一个字符串进行sha1加密
+        StringBuffer sb = new StringBuffer();
+        for (String s : arr) sb.append(s);
+        String mySignature = SecurityUtil.SHA1(sb.toString());
+        // 3 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+        return mySignature.equals(signature);
     }
 
     public static void main(String[] args) {

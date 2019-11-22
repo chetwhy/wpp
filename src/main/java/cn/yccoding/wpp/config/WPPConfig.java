@@ -23,7 +23,8 @@ public class WPPConfig {
         WPPConfigParams params = new WPPConfigParams();
         params.setAppId(env.getProperty("wpp.APP_ID"));
         params.setAppSecret(env.getProperty("wpp.APPSECRET"));
-        params.setInterfaceUrl(env.getProperty("wpp.INTERFACE_TOKEN"));
+        params.setInterfaceUrl(env.getProperty("wpp.INTERFACE_URL"));
+        params.setInterfaceToken(env.getProperty("wpp.INTERFACE_TOKEN"));
         params.setJsDomain(env.getProperty("wpp.JS_DOMAIN"));
         params.setWebAuthDomain(env.getProperty("wpp.WEB_AUTH_DOMAIN"));
         return params;
