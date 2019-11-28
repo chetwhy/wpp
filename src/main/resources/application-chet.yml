@@ -2,7 +2,7 @@
 wechat:
   wcp:
     APP_ID:
-    APPSECRET:
+    APPSECRET: 
     MCH_ID:
     API_KEY:
     # 注册域名
@@ -20,17 +20,19 @@ wechat:
     # 异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数，如果参数中传了notify_url，则商户平台上配置的回调地址将不会生效。
     NOTIFY_URL_REFUND:
 
+server:
+  port: 8082
 
 spring:
   redis:
     #redis数据库，默认是0
     database: 0
     #redis服务器地址
-    host:
+    host: 120.79.27.209
     #redis服务端口，默认6379
     port: 6379
     #redis密码，默认为空
-    password:
+    password: yccoding2019
     #集群版
 #    lettuce:
 #      pool:
