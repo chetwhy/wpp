@@ -1,8 +1,8 @@
 ## 测试公众号
 wechat:
   wcp:
-    APP_ID:
-    APPSECRET: 
+    APP_ID: 11
+    APPSECRET: 11
     MCH_ID:
     API_KEY:
     # 注册域名
