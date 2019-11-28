@@ -66,8 +66,6 @@ Servers
 
 # yml&properties
 *.yml
-**.yml
 *-ups.yml
-*-chet.yml
+*-dev.yml
 *-test.properties
-src/main/resources/application-chet.yml
