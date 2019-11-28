@@ -70,3 +70,4 @@ Servers
 *-ups.yml
 *-chet.yml
 *-test.properties
+src/main/resources/application-chet.yml
