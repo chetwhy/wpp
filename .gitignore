@@ -65,7 +65,7 @@ Servers
 .metadata
 
 # yml&properties
+*.yml
 *-ups.yml
-*-chet.yml
-*-ups-test.properties
-*-ups-chet.properties
+*-dev.yml
+*-test.properties

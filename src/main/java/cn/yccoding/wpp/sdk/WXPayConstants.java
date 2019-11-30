@@ -28,7 +28,7 @@ public class WXPayConstants {
     public static final String WXPAYSDK_VERSION = "WXPaySDK/3.0.9";
     public static final String USER_AGENT = WXPAYSDK_VERSION +
             " (" + System.getProperty("os.arch") + " " + System.getProperty("os.name") + " " + System.getProperty("os.version") +
-            ") Java/" + System.getProperty("java.version") + " HttpClient/" + HttpClient.class.getPackage().getImplementationVersion();
+            ") Java/" + System.getProperty("java.version") + " HttpClientUtil/" + HttpClient.class.getPackage().getImplementationVersion();
 
     public static final String MICROPAY_URL_SUFFIX     = "/pay/micropay";
     public static final String UNIFIEDORDER_URL_SUFFIX = "/pay/unifiedorder";
