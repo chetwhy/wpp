@@ -1,19 +1,17 @@
 package cn.yccoding.wpp.controller;
 
-import cn.yccoding.wpp.model.wpp.reqmsg.TextMessageReq;
-import cn.yccoding.wpp.model.wpp.respmsg.TextMessageResp;
-import cn.yccoding.wpp.pay.WPPBackendUtil;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalField;
-import java.util.Date;
+import cn.yccoding.wpp.model.wpp.reqmsg.TextMessageReq;
+import cn.yccoding.wpp.model.wpp.respmsg.TextMessageResp;
+import cn.yccoding.wpp.pay.WPPBackendUtil;
 
 /**
  * @author : Chet
@@ -28,8 +26,15 @@ public class WPPMessageController {
     @Autowired
     private WPPBackendUtil wppBackendUtil;
 
+    public static void main(String[] args) {
+        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
+        // System.out.println(LocalDateTime.now().getLong(ChronoField.INSTANT_SECONDS));
+        System.out.println(new Date().getTime());
+    }
+
     /**
      * 微信公众号url接入确认
+     *
      * @param signature
      * @param timestamp
      * @param nonce
@@ -38,12 +43,12 @@ public class WPPMessageController {
      */
     @GetMapping("/portal")
     @ResponseBody
-    public String validate(String signature,String timestamp,String nonce,String echostr){
+    public String validate(String signature, String timestamp, String nonce, String echostr) {
         if (!wppBackendUtil.checkSignature(signature, timestamp, nonce)) {
             logger.error("WPPMessageController.validate -- 公众号接入失败");
             return null;
         }
-        logger.info("WPPMessageController.validate -- 公众号接入成功,echostr:[{}]",echostr);
+        logger.info("WPPMessageController.validate -- 公众号接入成功,echostr:[{}]", echostr);
         return echostr;
     }
 
@@ -60,11 +65,5 @@ public class WPPMessageController {
         respMsg.setMsgType("text");
         respMsg.setContent(reqMsg.getContent());
         return respMsg;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli());
-        //System.out.println(LocalDateTime.now().getLong(ChronoField.INSTANT_SECONDS));
-        System.out.println(new Date().getTime());
     }
 }
