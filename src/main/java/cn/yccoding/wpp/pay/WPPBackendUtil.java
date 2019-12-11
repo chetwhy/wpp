@@ -110,8 +110,6 @@ public class WPPBackendUtil {
     public static void main(String[] args) {
         System.out.println(new Date().getTime());
         System.out.println(new Date().getTime());
-        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
-        System.out.println(milliSecond);
 
     }
 }
