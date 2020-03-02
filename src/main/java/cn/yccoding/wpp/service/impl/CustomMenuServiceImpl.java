@@ -30,7 +30,7 @@ public class CustomMenuServiceImpl implements ICustomMenuService {
     public String createMenu(String menuJson) {
         String token = wppBackendUtil.getAccessToken(wppConfigParams.getAppId());
         String toUrl = MessageFormat.format(WPPURL.MENU_CREATE, token);
-        return httpClientUtil.doPost(toUrl, token);
+        return httpClientUtil.doPost(toUrl, menuJson);
     }
 
     @Override
