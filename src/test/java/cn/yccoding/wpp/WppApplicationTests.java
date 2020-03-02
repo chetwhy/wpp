@@ -5,19 +5,21 @@ import cn.yccoding.wpp.config.bean.WCPConfigParamsYML;
 import cn.yccoding.wpp.model.wcp.*;
 import cn.yccoding.wpp.pay.WCPBackendConst;
 import cn.yccoding.wpp.pay.WCPBackendUtil;
-import cn.yccoding.wpp.sdk.WXPayConfigImpl;
 import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
 import cn.yccoding.wpp.sdk.WXPayUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @SpringBootTest
-class WppApplicationTests {
+@RunWith(SpringRunner.class)
+public class WppApplicationTests {
 
     @Autowired
     private WCPConfigParams wcpConfigParams;
@@ -26,7 +28,7 @@ class WppApplicationTests {
     private WCPConfigParamsYML wcpConfigParamsYML;
 
     @Autowired
-    private WXPayConfigImpl wxPayConfigImpl;
+    private WXPayConfigYMLImpl wxPayConfigImpl;
 
     @Autowired
     private WXPayConfigYMLImpl wxPayConfigYMLImpl;
@@ -35,14 +37,14 @@ class WppApplicationTests {
     private WCPBackendUtil wcpBackendUtil;
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
         System.out.println(wcpConfigParams);
         System.out.println(wxPayConfigImpl.getAppID());
         System.out.println(wxPayConfigYMLImpl.getAppID());
     }
 
     @Test
-    void testUnifiedOrder() {
+    public void testUnifiedOrder() {
         String openid = "o4036jqo2PN9isV6N2FHGRsGRVqg";
         String ipAddr = "127.0.0.1";
         String url = "http://chety.mynatapp.cc";
@@ -64,7 +66,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testQuery() {
+    public void testQuery() {
         Map<String, String> result1 = wcpBackendUtil.orderquery("201907051128063699");
         OrderQueryRequestEntity requestEntity = new OrderQueryRequestEntity();
         requestEntity.setOutTradeNo("201907051128063699");
@@ -75,7 +77,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testClose() {
+    public void testClose() {
         Map<String, String> result1 = wcpBackendUtil.closeorder("201907051128063699");
         CloseOrderRequestEntity requestEntity = new CloseOrderRequestEntity();
         requestEntity.setOutTradeNo("201907051128063699");
@@ -86,7 +88,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testRefund() {
+    public void testRefund() {
         Map<String, String> result1 = wcpBackendUtil.refund("201907051128063699", generateRandomOrderNo(), "1", "1");
         RefundRequestEntity requestEntity = new RefundRequestEntity();
         requestEntity.setOutTradeNo("201907051128063699");
@@ -100,7 +102,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testRefundQuery() {
+    public void testRefundQuery() {
         Map<String, String> result1 = wcpBackendUtil.refundquery("201907051128063699");
         RefundQueryRequestEntity requestEntity = new RefundQueryRequestEntity();
         requestEntity.setOutTradeNo("201907051128063699");
@@ -111,7 +113,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testDLBill() {
+    public void testDLBill() {
         Map<String, String> result1 = wcpBackendUtil.downloadbill("20190705", "ALL");
         DownloadBillRequestEntity requestEntity = new DownloadBillRequestEntity();
         requestEntity.setBillDate("20190705");
@@ -123,7 +125,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testDLFundFlow() {
+    public void testDLFundFlow() {
         Map<String, String> result1 = wcpBackendUtil.downloadfundflow("20190705", "Basic");
         DownloadFundFlowRequestEntity requestEntity = new DownloadFundFlowRequestEntity();
         requestEntity.setBillDate("20190705");
@@ -135,7 +137,7 @@ class WppApplicationTests {
     }
 
     @Test
-    void testBatchQueryComment() {
+    public void testBatchQueryComment() {
         Map<String, String> result1 = wcpBackendUtil.batchquerycomment("20190705000000", "20190706000000", "0");
         BatchQueryCommentRequestEntity requestEntity = new BatchQueryCommentRequestEntity();
         requestEntity.setBeginTime("20190705000000");
