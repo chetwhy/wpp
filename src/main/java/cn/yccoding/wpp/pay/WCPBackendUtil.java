@@ -1,23 +1,20 @@
 package cn.yccoding.wpp.pay;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
-
 import cn.yccoding.wpp.common.Utility;
+import cn.yccoding.wpp.config.bean.WCPConfigParams;
 import cn.yccoding.wpp.model.wcp.*;
+import cn.yccoding.wpp.sdk.WXPay;
+import cn.yccoding.wpp.sdk.WXPayConstants;
+import cn.yccoding.wpp.sdk.WXPayUtil;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
-
-import cn.yccoding.wpp.config.WCPConfigParams;
-import cn.yccoding.wpp.sdk.WXPay;
-import cn.yccoding.wpp.sdk.WXPayConfigImpl;
-import cn.yccoding.wpp.sdk.WXPayConstants;
-import cn.yccoding.wpp.sdk.WXPayUtil;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : Chet
@@ -72,7 +69,7 @@ public class WCPBackendUtil {
                 && respMap.get("result_code").equals((WXPayConstants.SUCCESS))) {
                 String prepayId = respMap.get("prepay_id");
                 return wppSignatureUtil.permissionValidate(wcpConfigParams.getAppId(), nonceStr, requestUrl, prepayId,
-                    wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(wcpConfigParams.getAppId())));
+                    wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessToken(wcpConfigParams.getAppId())));
             } else if (!respMap.get("return_code").equals(WXPayConstants.SUCCESS)) {
                 Map<String, Object> map = new HashMap<>();
                 for (String key : respMap.keySet()) {
@@ -102,7 +99,7 @@ public class WCPBackendUtil {
                 && respMap.get("result_code").equals((WXPayConstants.SUCCESS))) {
                 String prepayId = respMap.get("prepay_id");
                 return wppSignatureUtil.permissionValidate(wcpConfigParams.getAppId(), nonceStr, requestUrl, prepayId,
-                        wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenInRedis(wcpConfigParams.getAppId())));
+                        wcpConfigParams.getApiKey(),wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessToken(wcpConfigParams.getAppId())));
             } else if (!respMap.get("return_code").equals(WXPayConstants.SUCCESS)) {
                 Map<String, Object> map = new HashMap<>();
                 for (String key : respMap.keySet()) {

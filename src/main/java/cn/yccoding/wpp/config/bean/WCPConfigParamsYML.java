@@ -1,4 +1,4 @@
-package cn.yccoding.wpp.config;
+package cn.yccoding.wpp.config.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

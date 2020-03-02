@@ -1,8 +1,9 @@
 package cn.yccoding.wpp.sdk;
 
-import java.io.*;
+import cn.yccoding.wpp.config.bean.WCPConfigParams;
+import cn.yccoding.wpp.config.bean.WCPConfigParamsYML;
 
-import cn.yccoding.wpp.config.WCPConfigParams;
+import java.io.*;
 
 /**
  * @author : Chet
@@ -12,6 +13,7 @@ import cn.yccoding.wpp.config.WCPConfigParams;
 public class WXPayConfigImpl implements WXPayConfig {
 
     private WCPConfigParams wcpConfigParams;
+    private WCPConfigParamsYML wcpConfigParamsYML;
 
     private byte[] certData;
 

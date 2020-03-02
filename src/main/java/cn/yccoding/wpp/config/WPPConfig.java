@@ -1,5 +1,6 @@
 package cn.yccoding.wpp.config;
 
+import cn.yccoding.wpp.config.bean.WPPConfigParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,11 +9,11 @@ import org.springframework.core.env.Environment;
 
 /**
  * @author : Chet
- * @description : 微信公众平台配置类
+ * @description : 微信公众平台配置类,也可以使用WPPConfigParamsYML进行注入
  * @date : 2019/11/21
  */
 @Configuration
-@PropertySource("classpath:config/wechat-platform-chet-test.properties")
+@PropertySource("classpath:config/wpp-config.properties")
 public class WPPConfig {
 
     @Autowired

@@ -20,7 +20,7 @@ class WPPBackendUtilTest {
     void testRedis() {
         // redisTemplate.boundValueOps("k1").set("K1");
         // execute().set("k2".getBytes(), "v2".getBytes());
-        String accessToken = wppBackendUtil.getAccessTokenInRedis("k5");
+        String accessToken = wppBackendUtil.getAccessToken("k5");
         System.out.println("accessToken=" + accessToken);
     }
 
@@ -31,12 +31,12 @@ class WPPBackendUtilTest {
 
     @Test
     void getAccessToken() {
-        System.out.println(wppBackendUtil.getAccessToken());
+        System.out.println(wppBackendUtil.getAccessTokenLocal());
     }
 
     @Test
     void getTicket() {
-        System.out.println(wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessToken()));
+        System.out.println(wppBackendUtil.getJsApiTicket(wppBackendUtil.getAccessTokenLocal()));
     }
 
     private RedisConnection execute() {

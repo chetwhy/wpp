@@ -1,15 +1,14 @@
 package cn.yccoding.wpp.common;
 
-import cn.yccoding.wpp.pay.WPPURL;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
 
 /**
  * @author : Chet
@@ -23,12 +22,24 @@ public class HttpClientUtil {
     private RestTemplate restTemplate;
 
     public String doPost(String toUrl, String requestJson) {
-        HttpEntity<String> httpEntity = new HttpEntity<>(requestJson);
-        return restTemplate.postForObject(toUrl, httpEntity, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> httpEntity = new HttpEntity<>(requestJson, headers);
+        return restTemplate.postForEntity(toUrl, httpEntity, String.class).getBody();
     }
 
     public String doGet(String toUrl) {
         restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-        return restTemplate.getForObject(toUrl, String.class);
+        return restTemplate.getForEntity(toUrl, String.class).getBody();
+    }
+
+    public <T> T doGet(String toUrl,Class<T> responseType,Object... uriVariables) {
+        restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+        Object body = restTemplate.getForEntity(toUrl, responseType,uriVariables).getBody();
+        return (T) body;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

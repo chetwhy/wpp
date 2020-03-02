@@ -1,5 +1,7 @@
 package cn.yccoding.wpp.config;
 
+import cn.yccoding.wpp.config.bean.WCPConfigParams;
+import cn.yccoding.wpp.config.bean.WCPConfigParamsYML;
 import cn.yccoding.wpp.sdk.WXPay;
 import cn.yccoding.wpp.sdk.WXPayConfigImpl;
 import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
@@ -16,7 +18,7 @@ import org.springframework.core.env.Environment;
  * @date : 2019/11/1
  */
 @Configuration
-@PropertySource("classpath:config/wechat-pay-ups-test.properties")
+@PropertySource("classpath:config/wcp-config.properties")
 public class WCPConfig {
 
     @Autowired

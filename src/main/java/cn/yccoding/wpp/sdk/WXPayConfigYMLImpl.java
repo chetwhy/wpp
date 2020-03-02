@@ -2,7 +2,7 @@ package cn.yccoding.wpp.sdk;
 
 import java.io.*;
 
-import cn.yccoding.wpp.config.WCPConfigParamsYML;
+import cn.yccoding.wpp.config.bean.WCPConfigParamsYML;
 
 /**
  * @author : Chet

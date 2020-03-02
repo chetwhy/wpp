@@ -31,4 +31,5 @@ public class WPPMenuController {
     public String deleteMenu() {
         return customMenuService.deleteMenu();
     }
+
 }

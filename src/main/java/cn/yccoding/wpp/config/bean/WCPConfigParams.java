@@ -1,4 +1,4 @@
-package cn.yccoding.wpp.config;
+package cn.yccoding.wpp.config.bean;
 
 import lombok.Data;
 

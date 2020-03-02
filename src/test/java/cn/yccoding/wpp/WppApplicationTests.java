@@ -1,21 +1,20 @@
 package cn.yccoding.wpp;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import cn.yccoding.wpp.config.WCPConfigParams;
-import cn.yccoding.wpp.config.WCPConfigParamsYML;
+import cn.yccoding.wpp.config.bean.WCPConfigParams;
+import cn.yccoding.wpp.config.bean.WCPConfigParamsYML;
 import cn.yccoding.wpp.model.wcp.*;
 import cn.yccoding.wpp.pay.WCPBackendConst;
 import cn.yccoding.wpp.pay.WCPBackendUtil;
 import cn.yccoding.wpp.sdk.WXPayConfigImpl;
 import cn.yccoding.wpp.sdk.WXPayConfigYMLImpl;
 import cn.yccoding.wpp.sdk.WXPayUtil;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 @SpringBootTest
 class WppApplicationTests {
